@@ -1,0 +1,205 @@
+@font-face {
+  font-family: 'GeorgiaBold';
+  font-weight: bold;
+  src: url('assets/fonts/GeorgiaBold.ttf');
+}
+
+@font-face {
+  font-family: 'GeorgiaItalic';
+  font-style: italic;
+  src: url('assets/fonts/GeorgiaItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('assets/fonts/Georgia.ttf');
+}
+
+@font-face {
+  font-family: 'WigrumBold';
+  src: url('assets/fonts/WigrumBold.otf');
+}
+
+body,
+.content {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#main-title {
+  font-family: WigrumBold;
+  font-size: 1500%;
+}
+
+.rightSidebar {
+  z-index: 2;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 96vw;
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: space-around;
+  box-sizing: border-box;
+}
+
+.rightSidebar ul {
+  margin: 0;
+  padding: 0;
+  line-height: 100px;
+}
+
+.rightSidebar ul li {
+  font-family: Georgia;
+  color: white;
+  writing-mode: tb-rl;
+  transform: rotate(-180deg);
+  margin: 10vh 0;
+  list-style-type: none;
+}
+
+.rightSidebar ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+#side-nav-logo {
+  font-family: WigrumBold;
+  font-size: 180%;
+}
+
+.video-background {
+  display: block;
+  height: 100vh;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.portfolio {
+  display: block;
+  height: 100vh;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  background-color: lightsalmon;
+  box-sizing: border-box;
+}
+
+.scene.portfolio.second {
+  background-color: lightblue;
+}
+
+.scene.portfolio.third {
+  background-color: rgb(247, 189, 122);
+}
+
+.slides-container img {
+  height: 100vh;
+  width: 100%;
+}
+
+.slides-pagination {
+  margin-bottom: 10%;
+  margin-left: 30%;
+  width: 15%;
+}
+
+.project-name {
+  font-family: WigrumBold;
+}
+
+.services,
+.about {
+  display: block;
+  box-sizing: border-box;
+  min-height: 100%;
+  height: 100vh;
+  width: auto;
+  padding: 12% 10% 0 10%;
+  margin: 0;
+  background-color: #f3f3f3;
+  font-family: Georgia;
+  font-size: 140%;
+}
+
+.services-header,
+.about h2 {
+  font-family: WigrumBold;
+  font-size: 440%;
+  color: #292827;
+  margin: 0;
+}
+
+.serviceList {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+
+.contact {
+  display: block;
+  height: 100vh;
+  width: auto;
+  padding: 5% 10% 0 10%;
+  margin: 0;
+  color: white;
+  background-color: #292827;
+  font-family: Georgia;
+  font-size: 150%;
+  box-sizing: border-box;
+}
+
+.contact a {
+  color: white;
+}
+
+.contact #contact-header {
+  font-size: 190%;
+  margin: 0;
+}
+
+.rad-animation {
+  font-family: WigrumBold;
+  font-size: 1100%;
+  margin-top: 25%;
+}
+
+video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+#main-title {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.listOfContents.active2 {
+  color: black;
+}
