@@ -94,17 +94,6 @@ $(function() {
   $('#slides-1, #slides-2, #slides-3').superslides({
     hashchange: true,
     pagination: true,
-    // play: 2200,
-    watchActiveIndex: true
+    play: 5000
   });
-
-  $(`<p style="color: black">womens mecca</p>`).prependTo(
-    '#slides-1 > .slides-pagination'
-  );
-  $(`<p style="color: white">dispatch</p>`).prependTo(
-    '#slides-2 > .slides-pagination'
-  );
-  $(`<p style="color: black">kstar</p>`).prependTo(
-    '#slides-3 > .slides-pagination'
-  );
 });

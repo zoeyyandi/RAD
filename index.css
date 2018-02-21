@@ -170,8 +170,11 @@ body,
 
 .rad-animation {
   font-family: WigrumBold;
-  font-size: 1100%;
-  margin-top: 25%;
+  font-size: 205pt;
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 9%;
 }
 
 .main-video {
@@ -215,6 +218,32 @@ body,
 .listOfContents.portfolioprojects.active2,
 .listOfContents.aboutus.active2 {
   color: black;
+}
+
+/* add text before pagination */
+#slides-1 > .slides-pagination::before {
+  content: 'womens mecca';
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: WigrumBold;
+  margin-right: 2%;
+}
+
+#slides-2 > .slides-pagination::before {
+  content: 'dispatch';
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: WigrumBold;
+  margin-right: 2%;
+  color: #fff;
+}
+
+#slides-3 > .slides-pagination::before {
+  content: 'kstar';
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: WigrumBold;
+  margin-right: 2%;
 }
 
 @media only screen and (min-width: 1224px) {
