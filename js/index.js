@@ -24,36 +24,42 @@ $(function() {
   // building scenes: toggle css classes for elements
   new ScrollMagic.Scene({ triggerElement: '#video' })
     .setClassToggle('#side-nav-logo', 'active')
-    // .addIndicators()
     .addTo(newController);
-  new ScrollMagic.Scene({ triggerElement: '#about' })
+  new ScrollMagic.Scene({ triggerElement: '#about', triggerHook: 0.25 })
     .setClassToggle('#high2', 'active')
-    // .addIndicators()
     .addTo(newController);
   new ScrollMagic.Scene({ triggerElement: '#portfolio' })
     .setClassToggle('#high3', 'active')
-    // .addIndicators()
     .addTo(newController);
   new ScrollMagic.Scene({ triggerElement: '#portfolio2' })
     .setClassToggle('#high3', 'active')
-    // .addIndicators()
     .addTo(newController);
   new ScrollMagic.Scene({ triggerElement: '#portfolio3' })
     .setClassToggle('#high3', 'active')
-    // .addIndicators()
     .addTo(newController);
   new ScrollMagic.Scene({ triggerElement: '#services' })
     .setClassToggle('#high4', 'active')
-    // .addIndicators()
     .addTo(newController);
   new ScrollMagic.Scene({ triggerElement: '#contact' })
     .setClassToggle('#high5', 'active')
-    // .addIndicators()
     .addTo(newController);
-  new ScrollMagic.Scene({ triggerElement: '#about' })
-    .setClassToggle('.listOfContents', 'active2')
-    // .addIndicators()
+  new ScrollMagic.Scene({ triggerElement: '#about', triggerHook: 0.75 })
+    .setClassToggle('.contactus', 'active2')
+    .addIndicators()
     .addTo(newController);
+  new ScrollMagic.Scene({ triggerElement: '#about', triggerHook: 0.6 })
+    .setClassToggle('.servicesoffered', 'active2')
+    .addIndicators()
+    .addTo(newController);
+  new ScrollMagic.Scene({ triggerElement: '#about', triggerHook: 0.42 })
+    .setClassToggle('.portfolioprojects', 'active2')
+    .addIndicators()
+    .addTo(newController);
+  new ScrollMagic.Scene({ triggerElement: '#about', triggerHook: 0.25 })
+    .setClassToggle('.aboutus', 'active2')
+    .addIndicators()
+    .addTo(newController);
+
   new ScrollMagic.Scene({ triggerElement: '#portfolio' })
     .setClassToggle('.listOfContents', 'active2')
     // .addIndicators()
@@ -85,19 +91,20 @@ $(function() {
     }
   }
 
-  $('#slides-1, #slides-2, #slides-3').superslides();
-
-  var projects = ['dispatch', 'womens mecca', 'woo'];
-
-  $('.slides-pagination > a').on('click', function(e) {
-    console.log($._data($('div#slides-1'), 'events'));
+  $('#slides-1, #slides-2, #slides-3').superslides({
+    hashchange: true,
+    pagination: true,
+    // play: 2200,
+    watchActiveIndex: true
   });
 
-  // $('.slides-pagination').ready(function() {
-  //   projects.forEach(function(project) {
-  //     $('.slides-pagination').prepend(
-  //       `<p class="project-name"> ${project} </p>`
-  //     );
-  //   });
-  // });
+  $(`<p style="color: black">womens mecca</p>`).prependTo(
+    '#slides-1 > .slides-pagination'
+  );
+  $(`<p style="color: white">dispatch</p>`).prependTo(
+    '#slides-2 > .slides-pagination'
+  );
+  $(`<p style="color: black">kstar</p>`).prependTo(
+    '#slides-3 > .slides-pagination'
+  );
 });

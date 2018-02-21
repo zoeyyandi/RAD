@@ -104,12 +104,18 @@ body,
 
 .slides-pagination {
   margin-bottom: 10%;
-  margin-left: 30%;
-  width: 15%;
+  margin-left: 5%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.project-name {
+.slides-pagination p {
+  margin-right: 2%;
   font-family: WigrumBold;
+  font-size: 1.5em;
+  opacity: 1;
 }
 
 .services,
@@ -168,7 +174,7 @@ body,
   margin-top: 25%;
 }
 
-video {
+.main-video {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -179,6 +185,10 @@ video {
   height: auto;
   z-index: 1;
   box-sizing: border-box;
+}
+
+.dispatch-video {
+  object-fit: cover;
 }
 
 #main-title {
@@ -200,6 +210,18 @@ video {
   text-decoration: underline;
 }
 
-.listOfContents.active2 {
+.listOfContents.contactus.active2,
+.listOfContents.servicesoffered.active2,
+.listOfContents.portfolioprojects.active2,
+.listOfContents.aboutus.active2 {
   color: black;
+}
+
+@media only screen and (min-width: 1224px) {
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 320px) {
 }
