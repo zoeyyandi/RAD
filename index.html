@@ -23,17 +23,21 @@
       <video class="main-video" poster="assets/images/poster.png" autoplay loop muted>
         <source src="assets/images/video.mp4" type="video/mp4">
       </video>
-      <h1 id="main-title"> rad </h1>
+      <div id="video-overlay">
+        <h1 id="main-title"> rad </h1>
+      </div>
     </section>
     <section id="about" class="scene about">
-      <h2> business artistry </h2>
-      <p> Great companies have purpose and flair.
-        <br> They're awake, self-aware and relevant.
-      </p>
-      <p> We love organizations like that.
-        <br> We help their brands develop a big perspective.
-        <br> With insight from art, culture, technology and the marketplace.
-      </p>
+      <div class="inner-content">
+        <h2> business artistry </h2>
+        <h3> Great companies have purpose and flair.
+          <br> They're awake, self-aware and relevant.
+        </h3>
+        <p> We love organizations like that.
+          <br> We help their brands develop a big perspective.
+          <br> With insight from art, culture, technology and the marketplace.
+        </p>
+      </div>
     </section>
     <section id="portfolio" class="scene portfolio">
       <div id="slides-1">
@@ -52,7 +56,7 @@
           <img src="assets/images/2_DISPATCH/Dispatch_1.jpg" alt="Dispatch 1">
           <img src="assets/images/2_DISPATCH/Dispatch_2.jpg" alt="Dispatch 2">
           <img src="assets/images/2_DISPATCH/Dispatch_3.jpg" alt="Dispatch 3">
-          <video class="dispatch-video" poster="assets/images/poster.png" autoplay loop muted>
+          <video class="dispatch-video" poster="assets/images/poster.png" autoplay loop>
             <source src="assets/images/2_DISPATCH/Dispatch_4.mov" type="video/mp4">
           </video>
           <img src="assets/images/2_DISPATCH/Dispatch_5.jpg" alt="Dispatch 5">
@@ -71,30 +75,34 @@
       </div>
     </section>
     <section id="services" class="scene services">
-      <h2 class="services-header"> holistic services </h2>
-      <p> We look at a brand's entire ecosystem - everywhere they communicate everything.
-        <br> Then we create concepts fine-tuned to unify, turn heads, change minds, and be practical.</p>
-      <div class="serviceList">
-        <ul>
-          <li>Identity</li>
-          <li>Logo &amp; Design</li>
-          <li>Brand Naming</li>
-          <li>Brand Strategy</li>
-        </ul>
-        <ul>
-          <li>Art Direction</li>
-          <li>Voice, Copy &amp; Communications</li>
-          <li>Film &amp; Photo</li>
-          <li>Campaign &amp; Marketing Approach</li>
-        </ul>
+      <div class="inner-content">
+        <h2 class="services-header"> holistic services </h2>
+        <p> We look at a brand's entire ecosystem - everywhere they communicate everything.
+          <br> Then we create concepts fine-tuned to unify, turn heads, change minds, and be practical.</p>
+        <div class="serviceList">
+          <ul>
+            <li>Identity</li>
+            <li>Art Direction</li>
+            <li>Logo &amp; Design</li>
+            <li>Voice, Copy &amp; Communications</li>
+            <li>Brand Naming</li>
+            <li>Film &amp; Photo</li>
+            <li>Brand Strategy</li>
+            <li>Campaign &amp; Marketing Approach</li>
+          </ul>
+        </div>
       </div>
     </section>
     <section id="contact" class="scene contact">
-      <p id="contact-header"> Give us a shout </p>
-      <p> We'll hear you out, catch your drift &amp; introduce our way of thinking.
-        <br> We love meeting new colleagues.</p>
-      <a href="mailto:hey@rrrad.ca?Subject=Hello%20" target="_top">hey@rrrad.ca</a>
-      <p class="rad-animation"></p>
+      <div id="contact-inner-content">
+        <div class="top-contact-content">
+          <p id="contact-header"> Give us a shout </p>
+          <p> We'll hear you out, catch your drift &amp; introduce our way of thinking.
+            <br> We love meeting new colleagues.</p>
+          <a href="mailto:hey@rrrad.ca?Subject=Hello%20" target="_top">hey@rrrad.ca</a>
+        </div>
+        <p class="rad-animation"></p>
+      </div>
     </section>
   </div>
   <div class="rightSidebar">
@@ -102,18 +110,20 @@
       <li id="side-nav-logo">
         <a class="listOfContents" href="#video">rad</a>
       </li>
-      <li id="high2">
-        <a class="listOfContents aboutus" href="#about">About</a>
-      </li>
-      <li id="high3">
-        <a class="listOfContents portfolioprojects" href="#portfolio">Portfolio</a>
-      </li>
-      <li id="high4">
-        <a class="listOfContents servicesoffered" href="#services">Services</a>
-      </li>
-      <li id="high5">
-        <a class="listOfContents contactus" href="#contact">Contact</a>
-      </li>
+      <div class="nav-content">
+        <li id="high2">
+          <a class="listOfContents aboutus" href="#about">About</a>
+        </li>
+        <li id="high3">
+          <a class="listOfContents portfolioprojects" href="#portfolio">Portfolio</a>
+        </li>
+        <li id="high4">
+          <a class="listOfContents servicesoffered" href="#services">Services</a>
+        </li>
+        <li id="high5">
+          <a class="listOfContents contactus" href="#contact">Contact</a>
+        </li>
+      </div>
     </ul>
   </div>
 
