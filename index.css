@@ -109,12 +109,18 @@ a.active {
 }
 
 .main-video {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   min-width: 100%;
   min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 #main-title {
@@ -391,6 +397,6 @@ body {
     font-size: 20pt;
   }
   .rad-animation {
-    font-size: 100pt;
+    font-size: 110pt;
   }
 }
