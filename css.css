@@ -1,0 +1,401 @@
+/* IMPORT FONTS */
+/*----------------------------------------------------------------------------------------------------------------------*/
+@font-face {
+  font-family: 'GeorgiaBold';
+  font-weight: bold;
+  src: url('assets/fonts/GeorgiaBold.ttf');
+}
+
+@font-face {
+  font-family: 'GeorgiaItalic';
+  font-style: italic;
+  src: url('assets/fonts/GeorgiaItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Georgia';
+  src: url('assets/fonts/Georgia.ttf');
+}
+
+@font-face {
+  font-family: 'WigrumBold';
+  src: url('assets/fonts/WigrumBold.otf');
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+/* SIDE NAVBAR */
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+.rightSidebar {
+  z-index: 2;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: space-around;
+  box-sizing: border-box;
+}
+
+.rightSidebar ul {
+  margin: 0;
+  padding: 0;
+  line-height: 100px;
+}
+
+.rightSidebar ul li {
+  font-family: Georgia;
+  color: white;
+  writing-mode: tb-rl;
+  transform: rotate(-180deg);
+  margin: 12vh 0;
+  list-style-type: none;
+}
+
+.rightSidebar ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+#side-nav-logo {
+  font-family: WigrumBold;
+  font-size: 24pt;
+}
+
+/* TOGGLE ACTIVE */
+
+.active {
+  text-decoration: underline;
+}
+
+.active2 {
+  color: black;
+}
+
+.listOfContents.contactus.active2,
+.listOfContents.servicesoffered.active2,
+.listOfContents.portfolioprojects.active2,
+.listOfContents.aboutus.active2 {
+  color: black;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+/* VIDEO TOP SECTION */
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+.video-background {
+  display: block;
+  height: 100vh;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+#video-overlay {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+#main-title {
+  font-family: WigrumBold;
+  font-size: 255pt;
+  color: white;
+  margin: 0;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+/* PORTFOLIO CAROUSELS */
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+.slides-container img {
+  height: 100vh;
+  width: 100%;
+}
+
+.slides-pagination {
+  margin-bottom: 10%;
+  margin-left: 5%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slides-pagination p {
+  margin-right: 2%;
+  font-family: WigrumBold;
+  font-size: 1.5em;
+  opacity: 1;
+}
+
+.dispatch-video {
+  object-fit: cover;
+}
+
+/* add text before pagination */
+#slides-1 > .slides-pagination::before {
+  content: 'womens mecca';
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: WigrumBold;
+  margin-right: 2%;
+}
+
+#slides-2 > .slides-pagination::before {
+  content: 'dispatch';
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: WigrumBold;
+  margin-right: 2%;
+  color: #fff;
+}
+
+#slides-3 > .slides-pagination::before {
+  content: 'kstar';
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: WigrumBold;
+  margin-right: 2%;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+/* BODY, CONTENT, SCENE, ABOUT && SERVICES SECTION */
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+body,
+.content {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.scene {
+  height: 100vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.inner-content {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.services,
+.about {
+  background-color: white;
+  font-family: Georgia;
+  font-size: 14pt;
+  color: rgb(80, 80, 80);
+}
+
+.services-header,
+.about h2 {
+  font-family: WigrumBold;
+  font-size: 75pt;
+  color: #292827;
+  margin: 0;
+}
+
+.serviceList {
+  display: flex;
+  width: 100%;
+}
+
+.serviceList ul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.serviceList ul li {
+  margin: 0;
+  list-style-position: inside;
+  width: 35%;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+/* CONTACT END SECTION */
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+.contact {
+  color: white;
+  background-color: #292827;
+  font-family: Georgia;
+  font-size: 16pt;
+}
+
+.contact a {
+  color: white;
+}
+
+.contact #contact-header {
+  font-size: 36pt;
+  margin-bottom: 0;
+}
+
+.top-contact-content {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  flex-direction: column;
+}
+
+#contact-inner-content {
+  display: flex;
+  align-content: space-between;
+  width: 80%;
+  flex-direction: column;
+}
+
+.rad-animation {
+  font-family: WigrumBold;
+  font-size: 205pt;
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 9%;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+/* MEDIA QUERIES */
+/*----------------------------------------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+  .serviceList ul {
+    flex-direction: column;
+  }
+
+  .serviceList ul li {
+    width: 100%;
+  }
+
+  #main-title {
+    font-size: 160pt;
+  }
+
+  .rightSidebar {
+    height: 35%;
+  }
+
+  .rightSidebar ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin-right: 30px;
+  }
+
+  #side-nav-logo {
+    font-size: 22pt;
+    margin: 25px 0 5px 0;
+  }
+
+  #high2,
+  #high3,
+  #high4,
+  #high5 {
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    margin: 6px 0;
+  }
+
+  .nav-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .services-header,
+  .about h2 {
+    font-size: 40pt;
+  }
+
+  #slides-3 > .slides-pagination::before,
+  #slides-2 > .slides-pagination::before,
+  #slides-1 > .slides-pagination::before {
+    font-size: 11pt;
+  }
+  .slides-pagination a {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  .slides-pagination {
+    width: 200px;
+    margin-left: 3%;
+    margin-bottom: 7%;
+  }
+
+  #contact-inner-content {
+    font-size: 12pt;
+  }
+
+  #contact-inner-content #contact-header {
+    font-size: 24pt;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  #main-title {
+    font-size: 120pt;
+  }
+  .serviceList ul li {
+    width: 305px;
+  }
+  .slides-pagination {
+    width: 220px;
+    margin-left: 0;
+    margin-bottom: 4%;
+  }
+  #contact-inner-content {
+    font-size: 10pt;
+    width: 70%;
+    box-sizing: border-box;
+    margin-right: 12%;
+  }
+
+  .inner-content {
+    font-size: 11pt;
+  }
+
+  #contact-inner-content #contact-header {
+    font-size: 20pt;
+  }
+}
