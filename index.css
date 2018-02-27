@@ -28,37 +28,42 @@
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 .rightSidebar {
-  z-index: 2;
+  z-index: 10;
   position: fixed;
-  height: 100vh;
+  height: 100%;
   top: 0;
   right: 0;
   width: 4vw;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: space-around;
-  box-sizing: border-box;
 }
 
 .rightSidebar ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 90%;
   margin: 0;
   padding: 0;
-  line-height: 100px;
 }
 
 .rightSidebar ul li {
   font-family: Georgia;
-  color: white;
-  writing-mode: tb-rl;
+  writing-mode: vertical-rl;
   transform: rotate(-180deg);
-  margin: 12vh 0;
   list-style-type: none;
 }
 
-.rightSidebar ul li a {
+a {
   text-decoration: none;
   color: white;
 }
+
+/* a:hover {
+  text-decoration: underline;
+} */
 
 #side-nav-logo {
   font-family: WigrumBold;
@@ -66,20 +71,16 @@
 }
 
 /* TOGGLE ACTIVE */
-
-.active {
-  text-decoration: underline;
-}
-
-.active2 {
+a.in {
   color: black;
 }
 
-.listOfContents.contactus.active2,
-.listOfContents.servicesoffered.active2,
-.listOfContents.portfolioprojects.active2,
-.listOfContents.aboutus.active2 {
-  color: black;
+a.active.in {
+  border-left: 1px solid black;
+}
+
+a.active {
+  border-left: 1px solid white;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------*/
@@ -88,8 +89,7 @@
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 .video-background {
-  display: block;
-  height: 100vh;
+  height: 100%;
   width: auto;
   padding: 0;
   margin: 0;
@@ -98,14 +98,11 @@
 }
 
 #video-overlay {
-  z-index: 2;
+  z-index: 1;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,10 +115,6 @@
   transform: translate(-50%, -50%);
   min-width: 100%;
   min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: 1;
-  box-sizing: border-box;
 }
 
 #main-title {
@@ -136,8 +129,8 @@
 /* PORTFOLIO CAROUSELS */
 /*----------------------------------------------------------------------------------------------------------------------*/
 
-.slides-container img {
-  height: 100vh;
+img {
+  height: 100%;
   width: 100%;
 }
 
@@ -192,14 +185,19 @@
 /* BODY, CONTENT, SCENE, ABOUT && SERVICES SECTION */
 /*----------------------------------------------------------------------------------------------------------------------*/
 
-body,
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 .content {
   margin: 0;
-  overflow-x: hidden;
+  height: 100%;
 }
 
 .scene {
-  height: 100vh;
+  height: 100%;
   width: auto;
   display: flex;
   justify-content: center;
@@ -215,10 +213,9 @@ body,
 
 .services,
 .about {
-  background-color: white;
+  background-color: #f3f3f3;
   font-family: Georgia;
   font-size: 14pt;
-  color: rgb(80, 80, 80);
 }
 
 .services-header,
@@ -253,7 +250,7 @@ body,
 /* CONTACT END SECTION */
 /*----------------------------------------------------------------------------------------------------------------------*/
 
-.contact {
+#contact {
   color: white;
   background-color: #292827;
   font-family: Georgia;
@@ -264,32 +261,22 @@ body,
   color: white;
 }
 
-.contact #contact-header {
+#contact-header {
   font-size: 36pt;
   margin-bottom: 0;
 }
 
-.top-contact-content {
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-end;
-  flex-direction: column;
-}
-
 #contact-inner-content {
   display: flex;
-  align-content: space-between;
+  justify-content: space-between;
   width: 80%;
   flex-direction: column;
 }
 
 .rad-animation {
   font-family: WigrumBold;
-  font-size: 205pt;
+  font-size: 188pt;
   margin: 0;
-  position: absolute;
-  top: 70%;
-  left: 9%;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------*/
@@ -319,6 +306,7 @@ body,
     align-items: center;
     box-sizing: border-box;
     margin-right: 30px;
+    height: 300px;
   }
 
   #side-nav-logo {
@@ -335,6 +323,7 @@ body,
     width: 14px;
     height: 14px;
     overflow: hidden;
+    text-indent: -9999px;
     margin: 6px 0;
   }
 
@@ -370,6 +359,9 @@ body,
   #contact-inner-content #contact-header {
     font-size: 24pt;
   }
+  .rad-animation {
+    font-size: 120pt;
+  }
 }
 
 @media only screen and (max-width: 520px) {
@@ -397,5 +389,8 @@ body,
 
   #contact-inner-content #contact-header {
     font-size: 20pt;
+  }
+  .rad-animation {
+    font-size: 100pt;
   }
 }
