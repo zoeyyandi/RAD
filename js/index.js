@@ -11,6 +11,7 @@ $(function() {
   var navPortfolioA = $('#high3a');
   var navAboutA = $('#high2a');
   var navRadA = $('#side-nav-logoa');
+  var sectionIndicator = $('#sectionIndicator');
 
   var largeScreen = $(window).width() > 768;
   var tabletScreen = $(window).width() <= 768 && $(window).width() > 520;
@@ -29,9 +30,14 @@ $(function() {
   // get all scenes
   var scenes = document.querySelectorAll('.scene');
   var currentScene = 0;
+  var sceneHeight;
 
   // video slide
-  var videoSlide = $('.dispatch-video');
+  var video = $('.dispatch-video');
+  var videoSlide = $('.videoSlide');
+  var playBtn = $('#play');
+  var pauseBtn = $('#pause');
+  var btnContainer = $('.playBtn');
 
   var controller = new ScrollMagic.Controller({
     globalSceneOptions: {
@@ -41,20 +47,33 @@ $(function() {
 
   // change jump to smooth scroll
   controller.scrollTo(function(id) {
-    TweenMax.to(window, 0.9, {
-      scrollTo: {
-        y: id,
-        autoKill: true // Allow scroll position to change outside itself
-      },
+    TweenMax.to(window, 1, {
+      scrollTo: id,
       ease: Cubic.easeInOut
     });
   });
 
   // create scene for every slide
   scenes.forEach(function(scene, i) {
+    sceneHeight = $(scene).height();
     window['scene' + (i + 1)] = new ScrollMagic.Scene({ triggerElement: scene })
       .setPin(scene, { pushFollowers: false })
       .addTo(controller);
+  });
+
+  /// scroll to top of each section
+  var scrollDirection;
+  [
+    window.scene1,
+    window.scene2,
+    window.scene3,
+    window.scene4,
+    window.scene5,
+    window.scene6
+  ].forEach(function(s) {
+    s.on('progress', function(e) {
+      scrollDirection = e.scrollDirection;
+    });
   });
 
   window.scene1.on('update', function(e) {
@@ -62,153 +81,256 @@ $(function() {
     var scrollPos = e.scrollPos;
 
     var pos = round(scrollPos / startPos, 2);
+    scrollEffects(pos);
 
-    // page 1
-    if (pos <= 1) {
-      // toggle contact color
-      if (pos >= 0.14) {
-        addToClass(navContactA, 'in');
-      } else {
-        removeToClass(navContactA, 'in');
+    if (largeScreen) {
+      ///// nav bar effect
+      // page 1
+      if (pos <= 1) {
+        // toggle contact color
+        if (pos >= 0.14) {
+          addToClass(navContactA, 'in');
+        } else {
+          removeToClass(navContactA, 'in');
+        }
+        // toggle service color
+        if (pos >= 0.32) {
+          addToClass(navServicesA, 'in');
+        } else {
+          removeToClass(navServicesA, 'in');
+        }
+        // toggle porfolio color
+        if (pos >= 0.51) {
+          addToClass(navPortfolioA, 'in');
+        } else {
+          removeToClass(navPortfolioA, 'in');
+        }
+        //toggle about color and underline
+        if (pos >= 0.69) {
+          addToClass(navAboutA, 'in');
+          addToClass(navAboutA, 'active');
+        } else {
+          removeToClass(navAboutA, 'in');
+          removeToClass(navAboutA, 'active');
+        }
+        // toggle rad
+        if (pos >= 0.87) {
+          addToClass(navRadA, 'in');
+        } else {
+          removeToClass(navRadA, 'in');
+        }
       }
-      // toggle service color
-      if (pos >= 0.32) {
-        addToClass(navServicesA, 'in');
-      } else {
-        removeToClass(navServicesA, 'in');
+
+      // page 3
+      if (pos > 2 && pos <= 3) {
+        if (pos >= 2.14) {
+          removeToClass(navContactA, 'in');
+        } else {
+          addToClass(navContactA, 'in');
+        }
+        if (pos >= 2.32) {
+          removeToClass(navServicesA, 'in');
+        } else {
+          addToClass(navServicesA, 'in');
+        }
+        if (pos >= 2.51) {
+          removeToClass(navPortfolioA, 'in');
+          addToClass(navPortfolioA, 'active');
+          removeToClass(navAboutA, 'active');
+        } else {
+          addToClass(navPortfolioA, 'in');
+          removeToClass(navPortfolioA, 'active');
+          addToClass(navAboutA, 'active');
+        }
+        if (pos >= 2.69) {
+          removeToClass(navAboutA, 'in');
+        } else {
+          addToClass(navAboutA, 'in');
+        }
+        if (pos >= 2.87) {
+          removeToClass(navRadA, 'in');
+        } else {
+          addToClass(navRadA, 'in');
+        }
       }
-      // toggle porfolio color
-      if (pos >= 0.51) {
-        addToClass(navPortfolioA, 'in');
-      } else {
-        removeToClass(navPortfolioA, 'in');
+
+      // page 5
+      if (pos > 4 && pos <= 5) {
+        if (pos >= 4.14) {
+          addToClass(navContactA, 'in');
+        } else {
+          removeToClass(navContactA, 'in');
+        }
+        if (pos >= 4.32) {
+          addToClass(navServicesA, 'in');
+        } else {
+          removeToClass(navServicesA, 'in');
+        }
+        if (pos >= 4.51) {
+          addToClass(navPortfolioA, 'in');
+        } else {
+          removeToClass(navPortfolioA, 'in');
+        }
+        if (pos >= 4.69) {
+          addToClass(navAboutA, 'in');
+        } else {
+          removeToClass(navAboutA, 'in');
+        }
+        if (pos >= 4.87) {
+          addToClass(navRadA, 'in');
+        } else {
+          removeToClass(navRadA, 'in');
+        }
       }
-      //toggle about color and underline
-      if (pos >= 0.69) {
-        addToClass(navAboutA, 'in');
-        addToClass(navAboutA, 'active');
-      } else {
-        removeToClass(navAboutA, 'in');
-        removeToClass(navAboutA, 'active');
+
+      // page 6
+      if (pos > 8 && pos <= 9) {
+        if (pos > 8.32) {
+          removeToClass(navPortfolioA, 'active');
+          addToClass(navServicesA, 'active');
+        } else {
+          removeToClass(navServicesA, 'active');
+          addToClass(navPortfolioA, 'active');
+        }
       }
-      // toggle rad
-      if (pos >= 0.87) {
-        addToClass(navRadA, 'in');
-      } else {
-        removeToClass(navRadA, 'in');
+
+      if (pos > 10 && pos <= 11) {
+        if (pos >= 10.14) {
+          removeToClass(navContactA, 'in');
+        } else {
+          addToClass(navContactA, 'in');
+        }
+        if (pos >= 10.32) {
+          removeToClass(navServicesA, 'in');
+        } else {
+          addToClass(navServicesA, 'in');
+        }
+        if (pos >= 10.51) {
+          removeToClass(navPortfolioA, 'in');
+          addToClass(navContactA, 'active');
+          removeToClass(navServicesA, 'active');
+        } else {
+          addToClass(navPortfolioA, 'in');
+          removeToClass(navContactA, 'active');
+          addToClass(navServicesA, 'active');
+        }
+        if (pos >= 10.69) {
+          removeToClass(navAboutA, 'in');
+        } else {
+          addToClass(navAboutA, 'in');
+        }
+        if (pos >= 10.87) {
+          removeToClass(navRadA, 'in');
+        } else {
+          addToClass(navRadA, 'in');
+        }
       }
     }
 
-    // page 2
-    if (pos > 1 && pos <= 2) {
-      if (pos >= 1.51) {
-        addToClass(navPortfolioA, 'active');
-        removeToClass(navAboutA, 'active');
-      } else {
-        removeToClass(navPortfolioA, 'active');
-        addToClass(navAboutA, 'active');
-      }
-    }
+    if (smallScreen || tabletScreen) {
+      // page 1
+      if (pos < 1) {
+        if (pos >= 0.72) {
+          sectionIndicator.text('About');
+          navContactA.css('border-color', 'black');
+        } else {
+          sectionIndicator.text('');
+          navContactA.css('border-color', 'white');
+        }
 
-    // page 3
-    if (pos > 2 && pos <= 3) {
-      if (pos >= 2.14) {
-        removeToClass(navContactA, 'in');
-      } else {
-        addToClass(navContactA, 'in');
-      }
-      if (pos >= 2.32) {
-        removeToClass(navServicesA, 'in');
-      } else {
-        addToClass(navServicesA, 'in');
-      }
-      if (pos >= 2.51) {
-        removeToClass(navPortfolioA, 'in');
-      } else {
-        addToClass(navPortfolioA, 'in');
-      }
-      if (pos >= 2.69) {
-        removeToClass(navAboutA, 'in');
-      } else {
-        addToClass(navAboutA, 'in');
-      }
-      if (pos >= 2.87) {
-        removeToClass(navRadA, 'in');
-      } else {
-        addToClass(navRadA, 'in');
-      }
-    }
-    // page 4
-    if (pos > 3 && pos <= 4) {
-      if (pos >= 3.14) {
-        addToClass(navContactA, 'in');
-      } else {
-        removeToClass(navContactA, 'in');
-      }
-      if (pos >= 3.32) {
-        addToClass(navServicesA, 'in');
-      } else {
-        removeToClass(navServicesA, 'in');
-      }
-      if (pos >= 3.51) {
-        addToClass(navPortfolioA, 'in');
-      } else {
-        removeToClass(navPortfolioA, 'in');
-      }
-      if (pos >= 3.69) {
-        addToClass(navAboutA, 'in');
-      } else {
-        removeToClass(navAboutA, 'in');
-      }
-      if (pos >= 3.87) {
-        addToClass(navRadA, 'in');
-      } else {
-        removeToClass(navRadA, 'in');
-      }
-    }
-    // page 5
-    if (pos > 4 && pos <= 5) {
-      if (pos >= 4.51) {
-        addToClass(navServicesA, 'active');
-        addToClass(navPortfolioA, 'in');
-        removeToClass(navPortfolioA, 'active');
-      } else {
-        addToClass(navServicesA, 'in');
-        removeToClass(navServicesA, 'active');
-        addToClass(navPortfolioA, 'active');
-      }
-    }
+        if (pos >= 0.76) {
+          navServicesA.css('border-color', 'black');
+        } else {
+          navServicesA.css('border-color', 'white');
+        }
 
-    // page 6
-    if (pos > 5 && pos <= 6) {
-      if (pos >= 5.14) {
-        removeToClass(navContactA, 'in');
-      } else {
-        addToClass(navContactA, 'in');
+        if (pos >= 0.81) {
+          navPortfolioA.css('border-color', 'black');
+        } else {
+          navPortfolioA.css('border-color', 'white');
+        }
+
+        if (pos >= 0.86) {
+          navAboutA.css({
+            'border-color': 'black',
+            'background-color': 'black'
+          });
+        } else {
+          navAboutA.css({
+            'border-color': 'white',
+            'background-color': 'transparent'
+          });
+        }
+
+        if (pos >= 0.92) {
+          navRadA.css('color', 'black');
+        } else {
+          navRadA.css('color', 'white');
+        }
       }
-      if (pos >= 5.32) {
-        removeToClass(navServicesA, 'in');
-      } else {
-        addToClass(navServicesA, 'in');
+
+      if (pos > 2 && pos <= 3) {
+        if (pos > 2.64) {
+          sectionIndicator.text('Portfolio');
+          navPortfolioA.css({ 'background-color': 'black' });
+          navAboutA.css({ 'background-color': 'transparent' });
+        } else {
+          sectionIndicator.text('About');
+          navPortfolioA.css({ 'background-color': 'transparent' });
+          navAboutA.css({ 'background-color': 'black' });
+        }
       }
-      if (pos >= 5.51) {
-        removeToClass(navPortfolioA, 'in');
-        addToClass(navContactA, 'active');
-        removeToClass(navServicesA, 'active');
-      } else {
-        addToClass(navPortfolioA, 'in');
-        removeToClass(navContactA, 'active');
-        addToClass(navServicesA, 'active');
+
+      if (pos > 8 && pos <= 9) {
+        if (pos > 8.64) {
+          sectionIndicator.text('Services');
+          navServicesA.css({ 'background-color': 'black' });
+          navPortfolioA.css({ 'background-color': 'transparent' });
+        } else {
+          sectionIndicator.text('Portfolio');
+          navPortfolioA.css({ 'background-color': 'black' });
+          navServicesA.css({ 'background-color': 'transparent' });
+        }
       }
-      if (pos >= 5.69) {
-        removeToClass(navAboutA, 'in');
-      } else {
-        addToClass(navAboutA, 'in');
-      }
-      if (pos >= 5.87) {
-        removeToClass(navRadA, 'in');
-      } else {
-        addToClass(navRadA, 'in');
+
+      if (pos > 10 && pos <= 11) {
+        if (pos >= 10.72) {
+          navContactA.css({ 'border-color': 'white', color: 'white' });
+        } else {
+          navContactA.css({ 'border-color': 'black', color: 'transparent' });
+        }
+
+        if (pos >= 10.76) {
+          navServicesA.css('border-color', 'white');
+        } else {
+          navServicesA.css('border-color', 'black');
+        }
+
+        if (pos >= 10.81) {
+          navPortfolioA.css('border-color', 'white');
+        } else {
+          navPortfolioA.css('border-color', 'black');
+        }
+
+        if (pos >= 10.86) {
+          navAboutA.css('border-color', 'white');
+          navRadA.css('color', 'white');
+        } else {
+          navAboutA.css('border-color', 'black');
+          navRadA.css('color', 'black');
+        }
+
+        if (pos > 10.64) {
+          sectionIndicator.text('Contact');
+          sectionIndicator.css('color', 'white');
+          navServicesA.css({ 'background-color': 'transparent' });
+          navContactA.css({ 'background-color': 'white' });
+        } else {
+          sectionIndicator.text('Services');
+          sectionIndicator.css('color', 'black');
+          navContactA.css({ 'background-color': 'transparent' });
+          navServicesA.css({ 'background-color': 'black' });
+        }
       }
     }
   });
@@ -254,75 +376,39 @@ $(function() {
     stopTyping = true;
   });
 
-  // video
-  [window.scene2, window.scene3, window.scene4].forEach(function(scene, i) {
-    scene.on('enter leave', function(e) {
-      if (i === 0) {
-        if (e.type === 'enter') {
-          slide1.superslides('start');
-          slide2.superslides('stop');
-          slide3.superslides('stop');
-        } else {
-          slide1.superslides('stop');
-        }
-      }
-      if (i === 1) {
-        if (e.type === 'enter') {
-          currentScene = 3;
-          videoSlide[0].play();
-          slide2.superslides('start');
-          slide1.superslides('stop');
-          slide3.superslides('stop');
-        } else {
-          currentScene = 2;
-          videoSlide[0].pause();
-          slide2.superslides('stop');
-          slide1.superslides('start');
-        }
-      }
-      if (i === 2) {
-        if (e.type === 'enter') {
-          slide1.superslides('stop');
-          slide2.superslides('stop');
-          slide3.superslides('start');
-        } else {
-          slide3.superslides('stop');
-          slide2.superslides('start');
-        }
-      }
+  // video controls
+  videoSlide.on('click', function() {
+    var paused = video[0].paused;
+    if (paused) {
+      playBtn.addClass('hide');
+      pauseBtn.addClass('show');
+      video[0].play();
+      setTimeout(function() {
+        btnContainer.addClass('hide');
+      }, 1000);
+    } else {
+      btnContainer.removeClass('hide');
+      playBtn.removeClass('hide');
+      pauseBtn.removeClass('show');
+      video[0].pause();
+    }
+  });
+
+  /////////// nav bar small medium screen ///////////////////
+
+  if (tabletScreen || smallScreen) {
+    [navAboutA, navContactA, navPortfolioA, navServicesA].forEach(function(
+      item
+    ) {
+      item.text('');
     });
-  });
-
-  window.scene3.on('enter', function(e) {
-    currentScene = 3;
-    videoSlide[0].play();
-  });
-
-  window.scene4.on('enter', function(e) {
-    currentScene = 4;
-    videoSlide[0].pause();
-  });
+  }
 
   /////// superslides //////////////////////////////////////////////////////////////////////////
 
   $('#slides-1, #slides-2, #slides-3').superslides({
     hashchange: false,
-    pagination: true,
-    play: 2000
-  });
-
-  slide2.on('animated.slides', function() {
-    var slideNo = slide2.superslides('current');
-    if (slideNo === 3) {
-      slide2.superslides('stop');
-      videoSlide[0].play();
-      videoSlide.bind('ended', function() {
-        videoSlide[0].pause();
-        slide2.superslides('start');
-      });
-    } else {
-      videoSlide[0].pause();
-    }
+    pagination: true
   });
 
   /////// UTILS  ////////////////////////////////////////////////////////////////
@@ -355,10 +441,6 @@ $(function() {
       // wait for a while and call this function again for next character
       setTimeout(function() {
         typeWriter(text, i + 1);
-      }, 150);
-    } else {
-      setTimeout(function() {
-        typeWriter(text, 0);
       }, 150);
     }
   }
@@ -397,6 +479,55 @@ $(function() {
     if (smallScreen) {
       rad = 'rrrad';
       return;
+    }
+  }
+
+  function scrollTo(y) {
+    TweenMax.to(window, 0.5, {
+      scrollTo: { y: y, autoKill: false }
+    });
+  }
+
+  function scrollEffects(pos) {
+    //// scroll to effect
+    /// PAGE 2
+    if (pos > 2 && pos < 3 && scrollDirection === 'FORWARD') {
+      scrollTo(sceneHeight * 3);
+    }
+    if (pos < 2 && pos > 1) {
+      scrollDirection = 'FORWARD';
+    }
+
+    /// PAGE 3
+    if (pos > 4 && pos < 5 && scrollDirection === 'FORWARD') {
+      scrollTo(sceneHeight * 5);
+    }
+    if (pos < 4 && pos > 3) {
+      scrollDirection = 'FORWARD';
+    }
+
+    /// PAGE 4
+    if (pos > 6 && pos < 7 && scrollDirection === 'FORWARD') {
+      scrollTo(sceneHeight * 7);
+    }
+    if (pos < 6 && pos > 5) {
+      scrollDirection = 'FORWARD';
+    }
+
+    /// PAGE 5
+    if (pos > 8 && pos < 9 && scrollDirection === 'FORWARD') {
+      scrollTo(sceneHeight * 9);
+    }
+    if (pos < 8 && pos > 7) {
+      scrollDirection = 'FORWARD';
+    }
+
+    /// PAGE 6
+    if (pos > 10 && pos < 11 && scrollDirection === 'FORWARD') {
+      scrollTo(sceneHeight * 11);
+    }
+    if (pos < 10 && pos > 9) {
+      scrollDirection = 'FORWARD';
     }
   }
 });
