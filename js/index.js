@@ -92,8 +92,10 @@ $(function() {
   var update = function(e) {
     var startPos = e.startPos;
     var scrollPos = e.scrollPos;
+    var navArray = [navRadA, navAboutA, navPortfolioA, navServicesA, navContactA];
 
     var pos = round(scrollPos / startPos, 2);
+    console.log(startPos, scrollPos, pos, scrollDirection);
     scrollEffects(pos);
 
     if (largeScreen) {
@@ -133,110 +135,66 @@ $(function() {
           removeToClass(navRadA, 'in');
         }
       }
-
-      // page 3
-      if (pos > 2 && pos <= 3) {
-        if (pos >= 2.14) {
-          removeToClass(navContactA, 'in');
-        } else {
-          addToClass(navContactA, 'in');
-        }
-        if (pos >= 2.32) {
-          removeToClass(navServicesA, 'in');
-        } else {
-          addToClass(navServicesA, 'in');
-        }
-        if (pos >= 2.51) {
-          removeToClass(navPortfolioA, 'in');
-          addToClass(navPortfolioA, 'active');
-          removeToClass(navAboutA, 'active');
-        } else {
-          addToClass(navPortfolioA, 'in');
-          removeToClass(navPortfolioA, 'active');
-          addToClass(navAboutA, 'active');
-        }
-        if (pos >= 2.69) {
-          removeToClass(navAboutA, 'in');
-        } else {
-          addToClass(navAboutA, 'in');
-        }
-        if (pos >= 2.87) {
-          removeToClass(navRadA, 'in');
-        } else {
-          addToClass(navRadA, 'in');
-        }
+      // PAGE 2
+      if (pos > 1 && pos <= 2) {
+        navArray.forEach(function(item, i) {
+          addToClass(item, 'in');
+          if (i === 1) {
+            addToClass(item, 'active');
+          }
+          if (i === 2) {
+            removeToClass(item, 'active');
+          }
+        });
       }
 
-      // page 5
-      if (pos > 4 && pos <= 5) {
-        if (pos >= 4.14) {
-          addToClass(navContactA, 'in');
-        } else {
-          removeToClass(navContactA, 'in');
-        }
-        if (pos >= 4.32) {
-          addToClass(navServicesA, 'in');
-        } else {
-          removeToClass(navServicesA, 'in');
-        }
-        if (pos >= 4.51) {
-          addToClass(navPortfolioA, 'in');
-        } else {
-          removeToClass(navPortfolioA, 'in');
-        }
-        if (pos >= 4.69) {
-          addToClass(navAboutA, 'in');
-        } else {
-          removeToClass(navAboutA, 'in');
-        }
-        if (pos >= 4.87) {
-          addToClass(navRadA, 'in');
-        } else {
-          removeToClass(navRadA, 'in');
-        }
+      if (pos <= 4 && pos >= 3) {
+        navArray.forEach(function(item, i) {
+          addToClass(item, 'in');
+          // remove previous active
+          if (i === 1) {
+            removeToClass(item, 'active');
+          }
+          if (i === 2) {
+            addToClass(item, 'active');
+          }
+        });
       }
 
-      // page 6
-      if (pos > 8 && pos <= 9) {
-        if (pos > 8.32) {
-          removeToClass(navPortfolioA, 'active');
-          addToClass(navServicesA, 'active');
-        } else {
-          removeToClass(navServicesA, 'active');
-          addToClass(navPortfolioA, 'active');
-        }
+      if (pos <= 8 && pos >= 7) {
+        navArray.forEach(function(item, i) {
+          addToClass(item, 'in');
+          if (i === 2) {
+            addToClass(item, 'active');
+          }
+          if (i === 3) {
+            removeToClass(item, 'active');
+          }
+        });
       }
 
-      if (pos > 10 && pos <= 11) {
-        if (pos >= 10.14) {
-          removeToClass(navContactA, 'in');
-        } else {
-          addToClass(navContactA, 'in');
-        }
-        if (pos >= 10.32) {
-          removeToClass(navServicesA, 'in');
-        } else {
-          addToClass(navServicesA, 'in');
-        }
-        if (pos >= 10.51) {
-          removeToClass(navPortfolioA, 'in');
-          addToClass(navContactA, 'active');
-          removeToClass(navServicesA, 'active');
-        } else {
-          addToClass(navPortfolioA, 'in');
-          removeToClass(navContactA, 'active');
-          addToClass(navServicesA, 'active');
-        }
-        if (pos >= 10.69) {
-          removeToClass(navAboutA, 'in');
-        } else {
-          addToClass(navAboutA, 'in');
-        }
-        if (pos >= 10.87) {
-          removeToClass(navRadA, 'in');
-        } else {
-          addToClass(navRadA, 'in');
-        }
+      if (pos <= 10 && pos >= 9) {
+        navArray.forEach(function(item, i) {
+          addToClass(item, 'in');
+          if (i === 3) {
+            addToClass(item, 'active');
+          }
+          if (i === 2 || i === 4) {
+            removeToClass(item, 'active');
+          }
+        });
+      }
+
+      if (pos <= 12 && pos >= 11) {
+        navArray.forEach(function(item, i) {
+          removeToClass(item, 'in');
+          if (i === 4) {
+            addToClass(item, 'active');
+          }
+          if (i === 3) {
+            removeToClass(item, 'active');
+          }
+        });
       }
     }
 
@@ -282,68 +240,56 @@ $(function() {
         }
       }
 
-      if (pos > 2 && pos <= 3) {
-        if (pos > 2.64) {
-          sectionIndicator.text('Portfolio');
-          navPortfolioA.css({ 'background-color': 'black' });
-          navAboutA.css({ 'background-color': 'transparent' });
-        } else {
-          sectionIndicator.text('About');
-          navPortfolioA.css({ 'background-color': 'transparent' });
-          navAboutA.css({ 'background-color': 'black' });
-        }
+      // page 2
+      if (pos >= 1 && pos <= 2) {
+        sectionIndicator.text('About').css({ color: 'black' });
+        navArray.forEach(function(item, i) {
+          if (i === 1) {
+            item.css({ 'background-color': 'black', 'border-color': 'black' });
+          } else if (i === 0) {
+            item.css({ color: 'black' });
+          } else {
+            item.css({ 'background-color': 'transparent', 'border-color': 'black' });
+          }
+        });
+      }
+      // page 3, 4, 5
+      if ((pos >= 3 && pos <= 4) || (pos >= 7 && pos <= 8)) {
+        sectionIndicator.text('Portfolio').css({ color: 'black' });
+        navArray.forEach(function(item, i) {
+          if (i === 2) {
+            item.css({ 'background-color': 'black' });
+          } else {
+            item.css({ 'background-color': 'transparent' });
+          }
+        });
       }
 
-      if (pos > 8 && pos <= 9) {
-        if (pos > 8.64) {
-          sectionIndicator.text('Services');
-          navServicesA.css({ 'background-color': 'black' });
-          navPortfolioA.css({ 'background-color': 'transparent' });
-        } else {
-          sectionIndicator.text('Portfolio');
-          navPortfolioA.css({ 'background-color': 'black' });
-          navServicesA.css({ 'background-color': 'transparent' });
-        }
+      // page 6
+      if (pos >= 9 && pos <= 10) {
+        sectionIndicator.text('Services').css({ color: 'black' });
+        navArray.forEach(function(item, i) {
+          if (i === 3) {
+            item.css({ 'background-color': 'black', 'border-color': 'black' });
+          } else if (i === 0) {
+            item.css({ color: 'black' });
+          } else {
+            item.css({ 'background-color': 'transparent', 'border-color': 'black' });
+          }
+        });
       }
 
-      if (pos > 10 && pos <= 11) {
-        if (pos >= 10.72) {
-          navContactA.css({ 'border-color': 'white', color: 'white' });
-        } else {
-          navContactA.css({ 'border-color': 'black', color: 'transparent' });
-        }
-
-        if (pos >= 10.76) {
-          navServicesA.css('border-color', 'white');
-        } else {
-          navServicesA.css('border-color', 'black');
-        }
-
-        if (pos >= 10.81) {
-          navPortfolioA.css('border-color', 'white');
-        } else {
-          navPortfolioA.css('border-color', 'black');
-        }
-
-        if (pos >= 10.86) {
-          navAboutA.css('border-color', 'white');
-          navRadA.css('color', 'white');
-        } else {
-          navAboutA.css('border-color', 'black');
-          navRadA.css('color', 'black');
-        }
-
-        if (pos > 10.64) {
-          sectionIndicator.text('Contact');
-          sectionIndicator.css('color', 'white');
-          navServicesA.css({ 'background-color': 'transparent' });
-          navContactA.css({ 'background-color': 'white' });
-        } else {
-          sectionIndicator.text('Services');
-          sectionIndicator.css('color', 'black');
-          navContactA.css({ 'background-color': 'transparent' });
-          navServicesA.css({ 'background-color': 'black' });
-        }
+      if (pos >= 11) {
+        sectionIndicator.text('Contact').css({ color: 'white' });
+        navArray.forEach(function(item, i) {
+          if (i === 4) {
+            item.css({ 'background-color': 'white', 'border-color': 'white' });
+          } else if (i === 0) {
+            item.css({ color: 'white' });
+          } else {
+            item.css({ 'background-color': 'transparent', 'border-color': 'white' });
+          }
+        });
       }
     }
   };
@@ -509,43 +455,53 @@ $(function() {
   function scrollEffects(pos) {
     //// scroll to effect
     /// PAGE 2
-    if (pos > 2 && pos < 3 && scrollDirection === 'FORWARD') {
-      scrollTo(sceneHeight * 3);
-    }
-    if (pos < 2 && pos > 1) {
-      scrollDirection = 'FORWARD';
+    if (pos > 2 && pos < 3) {
+      if (scrollDirection === 'FORWARD') {
+        scrollTo(sceneHeight * 3);
+      } else {
+        scrollTo(sceneHeight * 2);
+        scrollDirection = 'FORWARD';
+      }
     }
 
     /// PAGE 3
-    if (pos > 4 && pos < 5 && scrollDirection === 'FORWARD') {
-      scrollTo(sceneHeight * 5);
-    }
-    if (pos < 4 && pos > 3) {
-      scrollDirection = 'FORWARD';
+    if (pos > 4 && pos < 5) {
+      if (scrollDirection === 'FORWARD') {
+        scrollTo(sceneHeight * 5);
+      } else {
+        scrollTo(sceneHeight * 4);
+        scrollDirection = 'FORWARD';
+      }
     }
 
     /// PAGE 4
-    if (pos > 6 && pos < 7 && scrollDirection === 'FORWARD') {
-      scrollTo(sceneHeight * 7);
-    }
-    if (pos < 6 && pos > 5) {
-      scrollDirection = 'FORWARD';
+    if (pos > 6 && pos < 7) {
+      if (scrollDirection === 'FORWARD') {
+        scrollTo(sceneHeight * 7);
+      } else {
+        scrollTo(sceneHeight * 6);
+        scrollDirection = 'FORWARD';
+      }
     }
 
     /// PAGE 5
-    if (pos > 8 && pos < 9 && scrollDirection === 'FORWARD') {
-      scrollTo(sceneHeight * 9);
-    }
-    if (pos < 8 && pos > 7) {
-      scrollDirection = 'FORWARD';
+    if (pos > 8 && pos < 9) {
+      if (scrollDirection === 'FORWARD') {
+        scrollTo(sceneHeight * 9);
+      } else {
+        scrollTo(sceneHeight * 8);
+        scrollDirection = 'FORWARD';
+      }
     }
 
     /// PAGE 6
-    if (pos > 10 && pos < 11 && scrollDirection === 'FORWARD') {
-      scrollTo(sceneHeight * 11);
-    }
-    if (pos < 10 && pos > 9) {
-      scrollDirection = 'FORWARD';
+    if (pos > 10 && pos < 11) {
+      if (scrollDirection === 'FORWARD') {
+        scrollTo(sceneHeight * 11);
+      } else {
+        scrollTo(sceneHeight * 10);
+        scrollDirection = 'FORWARD';
+      }
     }
   }
 });

@@ -276,10 +276,10 @@ body {
 }
 
 .scene {
-  height: 100% !important;
-  width: 100% !important;
+  height: 100vh !important;
+  width: 100vw !important;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 100vh !important;
 }
 
@@ -289,6 +289,7 @@ body {
   width: 80%;
   flex-direction: column;
   align-items: flex-start;
+  margin-left: 4vw;
 }
 
 .services,
@@ -351,6 +352,7 @@ body {
   justify-content: space-between;
   width: 80%;
   flex-direction: column;
+  margin-left: 4vw;
 }
 
 .rad-animation {
@@ -378,10 +380,10 @@ body {
   }
 
   .rightSidebar {
-    width: 8vw;
+    width: 10vw;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
   }
 
