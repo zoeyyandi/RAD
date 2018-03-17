@@ -266,7 +266,7 @@ img {
 
 html,
 body {
-  height: 100vh;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -276,8 +276,8 @@ body {
 }
 
 .scene {
-  height: 100% !important;
-  width: 100% !important;
+  height: 100vh !important;
+  width: 100vw !important;
   display: flex;
   justify-content: center;
   margin-bottom: 100vh !important;
