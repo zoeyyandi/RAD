@@ -90,7 +90,7 @@ a.active {
 
 .video-background {
   height: 100%;
-  width: auto;
+  width: 100%;
   padding: 0;
   margin: 0;
   position: relative;
@@ -107,19 +107,46 @@ a.active {
   align-items: center;
 }
 
-.main-video {
+.videoWrapper {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
   z-index: -100;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
+}
+
+.main-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .main-video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .main-video {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .videoWrapper {
+    background: url('./assets/images/poster1.png') center center / cover no-repeat;
+  }
+
+  .main-video {
+    display: none;
+  }
 }
 
 #svgLogo {
@@ -249,8 +276,8 @@ body {
 }
 
 .scene {
-  height: 100%;
-  width: auto;
+  height: 100% !important;
+  width: 100% !important;
   display: flex;
   justify-content: center;
   margin-bottom: 100vh !important;
@@ -328,7 +355,7 @@ body {
 
 .rad-animation {
   font-family: WigrumBold;
-  font-size: 188pt;
+  font-size: 17vw;
   margin: 0;
 }
 
@@ -430,9 +457,9 @@ body {
   #contact-inner-content #contact-header {
     font-size: 24pt;
   }
-  .rad-animation {
+  /* .rad-animation {
     font-size: 120pt;
-  }
+  } */
 }
 
 @media only screen and (max-width: 520px) {
@@ -458,7 +485,7 @@ body {
   #contact-inner-content #contact-header {
     font-size: 20pt;
   }
-  .rad-animation {
+  /* .rad-animation {
     font-size: 110pt;
-  }
+  } */
 }

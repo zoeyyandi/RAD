@@ -18,6 +18,7 @@ $(function() {
   var smallScreen = $(window).width() <= 520;
 
   var stopTyping = false;
+  var radAnimation = $('.rad-animation');
 
   ///// slides
   var slide1 = $('#slides-1');
@@ -63,20 +64,32 @@ $(function() {
 
   /// scroll to top of each section
   var scrollDirection;
-  [
-    window.scene1,
-    window.scene2,
-    window.scene3,
-    window.scene4,
-    window.scene5,
-    window.scene6
-  ].forEach(function(s) {
+  [window.scene1, window.scene2, window.scene3, window.scene4, window.scene5, window.scene6].forEach(function(s) {
     s.on('progress', function(e) {
       scrollDirection = e.scrollDirection;
     });
   });
 
-  window.scene1.on('update', function(e) {
+  var resize = function(e) {
+    var width = $(this).width();
+    if (width < 520 || (width > 520 && width < 768)) {
+      navAboutA.text('');
+      navContactA.text('');
+      navPortfolioA.text('');
+      navServicesA.text('');
+    } else {
+      navAboutA.text('About');
+      navContactA.text('Contact');
+      navPortfolioA.text('Portfolio');
+      navServicesA.text('Services');
+    }
+  };
+
+  var debounceResize = debounce(resize, 100);
+
+  $(window).on('resize', debounceResize);
+
+  var update = function(e) {
     var startPos = e.startPos;
     var scrollPos = e.scrollPos;
 
@@ -333,34 +346,31 @@ $(function() {
         }
       }
     }
-  });
+  };
+
+  var debounceUpdate = debounce(update, 100);
+
+  window.scene1.on('update', debounceUpdate);
 
   // handle nav item click event
-  [navAboutA, navContactA, navPortfolioA, navRadA, navServicesA].forEach(
-    function(item) {
-      item.on('click', function(e) {
-        var id = $(this).attr('href');
-        if (id !== null) {
-          if (id.length > 0) {
-            e.preventDefault();
-            controller.scrollTo(id);
-            if (window.history && window.history.pushState) {
-              history.pushState('', document.title, id);
-            }
+  [navAboutA, navContactA, navPortfolioA, navRadA, navServicesA].forEach(function(item) {
+    item.on('click', function(e) {
+      var id = $(this).attr('href');
+      if (id !== null) {
+        if (id.length > 0) {
+          e.preventDefault();
+          controller.scrollTo(id);
+          if (window.history && window.history.pushState) {
+            history.pushState('', document.title, id);
           }
         }
-      });
-    }
-  );
+      }
+    });
+  });
 
   $(window).resize(function(e) {
-    var w = $(e.target);
+    var w = $(this);
     changeTextOnResize(w);
-
-    // slides update
-    [slide1, slide2, slide3].forEach(function(slide) {
-      slide.superslides('update');
-    });
   });
 
   // add typewrite effect on last slide
@@ -397,9 +407,7 @@ $(function() {
   /////////// nav bar small medium screen ///////////////////
 
   if (tabletScreen || smallScreen) {
-    [navAboutA, navContactA, navPortfolioA, navServicesA].forEach(function(
-      item
-    ) {
+    [navAboutA, navContactA, navPortfolioA, navServicesA].forEach(function(item) {
       item.text('');
     });
   }
@@ -412,6 +420,22 @@ $(function() {
   });
 
   /////// UTILS  ////////////////////////////////////////////////////////////////
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this,
+        args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
   function round(value, decimals) {
     return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
   }
@@ -451,18 +475,12 @@ $(function() {
     var smallScreen = w.width() <= 520;
     if (largeScreen) {
       rad = 'rrrrrrrad';
-      return;
-    }
-
-    if (tabletScreen) {
+    } else if (tabletScreen) {
       rad = 'rrrrrad';
-      return;
-    }
-
-    if (smallScreen) {
+    } else if (smallScreen) {
       rad = 'rrrad';
-      return;
     }
+    radAnimation.text(rad);
   }
 
   function firstRad() {
