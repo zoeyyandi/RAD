@@ -31,7 +31,7 @@ $(function() {
   // get all scenes
   var scenes = document.querySelectorAll('.scene');
   var currentScene = 0;
-  var sceneHeight;
+  var sceneHeight = $('.scene').height();
 
   // video slide
   var video = $('.dispatch-video');
@@ -41,48 +41,20 @@ $(function() {
   var btnContainer = $('.playBtn');
 
   // detect mobile device
-  var isMobile = jQuery.browser.mobile;
+  // var isMobile = jQuery.browser.mobile;
 
   var controller = new ScrollMagic.Controller({
     globalSceneOptions: {
       triggerHook: 'onLeave'
-    },
-    container: '#content'
+    }
   });
   // create scene for every slide
   scenes.forEach(function(scene, i) {
-    sceneHeight = $(scene).height();
     window['scene' + (i + 1)] = new ScrollMagic.Scene({ triggerElement: scene })
       .setPin(scene, { pushFollowers: false })
-      .addIndicators()
+      // .addIndicators()
       .addTo(controller);
   });
-
-  if (isMobile) {
-    var myScroll = new IScroll('#content', {
-      // don't scroll horizontal
-      scrollX: false,
-      // but do scroll vertical
-      scrollY: true,
-      useTransform: false,
-      // deativate css-transition to force requestAnimationFrame (implicit with probeType 3)
-      useTransition: true,
-      // show scrollbars
-      scrollbars: true,
-      click: true
-    });
-    // // overwrite scroll position calculation to use child's offset instead of container's scrollTop();
-    // controller.scrollPos(function() {
-    //   return -myScroll.y;
-    // });
-
-    // thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
-    myScroll.on('scroll', function() {
-      controller.update();
-    });
-  } else {
-    window.scene1.on('update', debounceUpdate);
-  }
 
   // change jump to smooth scroll
   controller.scrollTo(function(id) {
@@ -136,7 +108,7 @@ $(function() {
       navServicesA,
       navContactA
     ];
-    console.log('hihihi');
+
     var pos = round(scrollPos / startPos, 2);
     scrollEffects(pos);
 
@@ -178,13 +150,12 @@ $(function() {
         }
       }
       // PAGE 2
-      if (pos > 1 && pos <= 2) {
+      if (pos >= 1 && pos <= 2) {
         navArray.forEach(function(item, i) {
           addToClass(item, 'in');
           if (i === 1) {
             addToClass(item, 'active');
-          }
-          if (i === 2) {
+          } else {
             removeToClass(item, 'active');
           }
         });
@@ -194,11 +165,10 @@ $(function() {
         navArray.forEach(function(item, i) {
           addToClass(item, 'in');
           // remove previous active
-          if (i === 1) {
-            removeToClass(item, 'active');
-          }
           if (i === 2) {
             addToClass(item, 'active');
+          } else {
+            removeToClass(item, 'active');
           }
         });
       }
@@ -208,8 +178,7 @@ $(function() {
           addToClass(item, 'in');
           if (i === 2) {
             addToClass(item, 'active');
-          }
-          if (i === 3) {
+          } else {
             removeToClass(item, 'active');
           }
         });
@@ -220,8 +189,7 @@ $(function() {
           addToClass(item, 'in');
           if (i === 3) {
             addToClass(item, 'active');
-          }
-          if (i === 2 || i === 4) {
+          } else {
             removeToClass(item, 'active');
           }
         });
@@ -232,8 +200,7 @@ $(function() {
           removeToClass(item, 'in');
           if (i === 4) {
             addToClass(item, 'active');
-          }
-          if (i === 3) {
+          } else {
             removeToClass(item, 'active');
           }
         });
