@@ -40,11 +40,34 @@ $(function() {
   var pauseBtn = $('#pause');
   var btnContainer = $('.playBtn');
 
+  // detect mobile device
+  var isMobile = jQuery.browser.mobile;
+
   var controller = new ScrollMagic.Controller({
     globalSceneOptions: {
       triggerHook: 'onLeave'
     }
   });
+  // create scene for every slide
+  scenes.forEach(function(scene, i) {
+    sceneHeight = $(scene).height();
+    window['scene' + (i + 1)] = new ScrollMagic.Scene({ triggerElement: scene })
+      .setPin(scene, { pushFollowers: false })
+      // .addIndicators()
+      .addTo(controller);
+  });
+
+  if (isMobile) {
+    var myScroll = new IScroll('#content', {
+      // don't scroll horizontal
+      scrollX: false,
+      // but do scroll vertical
+      scrollY: true,
+      // show scrollbars
+      scrollbars: true,
+      click: true
+    });
+  }
 
   // change jump to smooth scroll
   controller.scrollTo(function(id) {
@@ -54,17 +77,16 @@ $(function() {
     });
   });
 
-  // create scene for every slide
-  scenes.forEach(function(scene, i) {
-    sceneHeight = $(scene).height();
-    window['scene' + (i + 1)] = new ScrollMagic.Scene({ triggerElement: scene })
-      .setPin(scene, { pushFollowers: false })
-      .addTo(controller);
-  });
-
   /// scroll to top of each section
   var scrollDirection;
-  [window.scene1, window.scene2, window.scene3, window.scene4, window.scene5, window.scene6].forEach(function(s) {
+  [
+    window.scene1,
+    window.scene2,
+    window.scene3,
+    window.scene4,
+    window.scene5,
+    window.scene6
+  ].forEach(function(s) {
     s.on('progress', function(e) {
       scrollDirection = e.scrollDirection;
     });
@@ -92,10 +114,15 @@ $(function() {
   var update = function(e) {
     var startPos = e.startPos;
     var scrollPos = e.scrollPos;
-    var navArray = [navRadA, navAboutA, navPortfolioA, navServicesA, navContactA];
+    var navArray = [
+      navRadA,
+      navAboutA,
+      navPortfolioA,
+      navServicesA,
+      navContactA
+    ];
 
     var pos = round(scrollPos / startPos, 2);
-    console.log(startPos, scrollPos, pos, scrollDirection);
     scrollEffects(pos);
 
     if (largeScreen) {
@@ -249,7 +276,10 @@ $(function() {
           } else if (i === 0) {
             item.css({ color: 'black' });
           } else {
-            item.css({ 'background-color': 'transparent', 'border-color': 'black' });
+            item.css({
+              'background-color': 'transparent',
+              'border-color': 'black'
+            });
           }
         });
       }
@@ -274,7 +304,10 @@ $(function() {
           } else if (i === 0) {
             item.css({ color: 'black' });
           } else {
-            item.css({ 'background-color': 'transparent', 'border-color': 'black' });
+            item.css({
+              'background-color': 'transparent',
+              'border-color': 'black'
+            });
           }
         });
       }
@@ -287,7 +320,10 @@ $(function() {
           } else if (i === 0) {
             item.css({ color: 'white' });
           } else {
-            item.css({ 'background-color': 'transparent', 'border-color': 'white' });
+            item.css({
+              'background-color': 'transparent',
+              'border-color': 'white'
+            });
           }
         });
       }
@@ -299,20 +335,22 @@ $(function() {
   window.scene1.on('update', debounceUpdate);
 
   // handle nav item click event
-  [navAboutA, navContactA, navPortfolioA, navRadA, navServicesA].forEach(function(item) {
-    item.on('click', function(e) {
-      var id = $(this).attr('href');
-      if (id !== null) {
-        if (id.length > 0) {
-          e.preventDefault();
-          controller.scrollTo(id);
-          if (window.history && window.history.pushState) {
-            history.pushState('', document.title, id);
+  [navAboutA, navContactA, navPortfolioA, navRadA, navServicesA].forEach(
+    function(item) {
+      item.on('click', function(e) {
+        var id = $(this).attr('href');
+        if (id !== null) {
+          if (id.length > 0) {
+            e.preventDefault();
+            controller.scrollTo(id);
+            if (window.history && window.history.pushState) {
+              history.pushState('', document.title, id);
+            }
           }
         }
-      }
-    });
-  });
+      });
+    }
+  );
 
   $(window).resize(function(e) {
     var w = $(this);
@@ -353,7 +391,9 @@ $(function() {
   /////////// nav bar small medium screen ///////////////////
 
   if (tabletScreen || smallScreen) {
-    [navAboutA, navContactA, navPortfolioA, navServicesA].forEach(function(item) {
+    [navAboutA, navContactA, navPortfolioA, navServicesA].forEach(function(
+      item
+    ) {
       item.text('');
     });
   }
