@@ -110,11 +110,9 @@ $(function() {
     ];
 
     var pos = round(scrollPos / startPos, 2);
-    if(!isMobile) {
-       scrollEffects(pos);
-    }
 
     if (largeScreen) {
+      scrollEffects(pos);
       ///// nav bar effect
       // page 1
       if (pos <= 1) {
