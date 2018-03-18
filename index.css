@@ -141,7 +141,8 @@ a.active {
 
 @media (max-width: 768px) {
   .videoWrapper {
-    background: url('./assets/images/poster1.png') center center / cover no-repeat;
+    background: url('./assets/images/poster1.png') center center / cover
+      no-repeat;
   }
 
   .main-video {
@@ -273,6 +274,7 @@ body {
 #content {
   margin: 0;
   height: 100%;
+  overflow: scroll;
 }
 
 .scene {

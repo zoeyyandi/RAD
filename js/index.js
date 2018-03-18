@@ -46,14 +46,15 @@ $(function() {
   var controller = new ScrollMagic.Controller({
     globalSceneOptions: {
       triggerHook: 'onLeave'
-    }
+    },
+    container: '#content'
   });
   // create scene for every slide
   scenes.forEach(function(scene, i) {
     sceneHeight = $(scene).height();
     window['scene' + (i + 1)] = new ScrollMagic.Scene({ triggerElement: scene })
       .setPin(scene, { pushFollowers: false })
-      // .addIndicators()
+      .addIndicators()
       .addTo(controller);
   });
 
@@ -63,10 +64,24 @@ $(function() {
       scrollX: false,
       // but do scroll vertical
       scrollY: true,
+      useTransform: false,
+      // deativate css-transition to force requestAnimationFrame (implicit with probeType 3)
+      useTransition: true,
       // show scrollbars
       scrollbars: true,
       click: true
     });
+    // // overwrite scroll position calculation to use child's offset instead of container's scrollTop();
+    // controller.scrollPos(function() {
+    //   return -myScroll.y;
+    // });
+
+    // thanks to iScroll 5 we now have a real onScroll event (with some performance drawbacks)
+    myScroll.on('scroll', function() {
+      controller.update();
+    });
+  } else {
+    window.scene1.on('update', debounceUpdate);
   }
 
   // change jump to smooth scroll
@@ -107,7 +122,7 @@ $(function() {
     }
   };
 
-  var debounceResize = debounce(resize, 100);
+  var debounceResize = debounce(resize, 250);
 
   $(window).on('resize', debounceResize);
 
@@ -121,7 +136,7 @@ $(function() {
       navServicesA,
       navContactA
     ];
-
+    console.log('hihihi');
     var pos = round(scrollPos / startPos, 2);
     scrollEffects(pos);
 
