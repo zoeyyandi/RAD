@@ -41,7 +41,7 @@ $(function() {
   var btnContainer = $('.playBtn');
 
   // detect mobile device
-  // var isMobile = jQuery.browser.mobile;
+  var isMobile = jQuery.browser.mobile;
 
   var controller = new ScrollMagic.Controller({
     globalSceneOptions: {
@@ -110,7 +110,9 @@ $(function() {
     ];
 
     var pos = round(scrollPos / startPos, 2);
-    scrollEffects(pos);
+    if(!isMobile) {
+       scrollEffects(pos);
+    }
 
     if (largeScreen) {
       ///// nav bar effect
