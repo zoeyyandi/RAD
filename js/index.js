@@ -59,8 +59,7 @@ $(function() {
   // change jump to smooth scroll
   controller.scrollTo(function(id) {
     TweenMax.to(window, 1, {
-      scrollTo: id,
-      ease: Cubic.easeInOut
+      scrollTo: id
     });
   });
 
@@ -110,12 +109,15 @@ $(function() {
     ];
 
     var pos = round(scrollPos / startPos, 2);
-
     if (largeScreen) {
       scrollEffects(pos);
       ///// nav bar effect
       // page 1
-      if (pos <= 1) {
+      if (pos < 1) {
+        navArray.forEach(function(item) {
+          removeToClass(item, 'active');
+          removeToClass(item, 'in');
+        });
         // toggle contact color
         if (pos >= 0.14) {
           addToClass(navContactA, 'in');
