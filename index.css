@@ -141,7 +141,8 @@ a.active {
 
 @media (max-width: 768px) {
   .videoWrapper {
-    background: url('./assets/images/poster1.png') center center / cover no-repeat;
+    background: url('./assets/images/poster1.png') center center / cover
+      no-repeat;
   }
 
   .main-video {
@@ -158,6 +159,9 @@ a.active {
 
 /* PORTFOLIO CAROUSELS */
 /*----------------------------------------------------------------------------------------------------------------------*/
+.slides-container {
+  height: 100%;
+}
 
 img {
   height: 100%;
@@ -366,11 +370,6 @@ body {
 /* MEDIA QUERIES */
 /*----------------------------------------------------------------------------------------------------------------------*/
 @media only screen and (max-width: 768px) {
-  img {
-    height: 100vh;
-    width: 100vw;
-  }
-  
   .serviceList ul {
     flex-direction: column;
   }
